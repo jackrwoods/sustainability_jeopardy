@@ -5,7 +5,7 @@ if ($_POST['email'] != "Your_Email@oregonstate.edu") {
 	$marketingEmailAddress = "jack.woods@oregonstate.edu";
 	$name = "Jack";
 	$subject = "New Jeopardy Listserv Signup";
-	$message = "Hi ".$name."!<br /><br />A new user has requested to sign up for the Sustainability listserv! Here's their information:<br /><b>Location:</b> ".file_get_contents("http://freegeoip.net/csv/".$_SERVER['REMOTE_ADDR'])."<br /><b>Email:</b> ".$_POST['email']."<br /><b>Name:</b> ".$_POST['fullname']."<br /><br />Have a great day!<br />Jack's Listserv Email Script";
+	$message = "Hi ".$name."!<br /><br />A new user has requested to sign up for the Sustainability listserv! Here's their information:<br /><br /><b>Location:</b> ".file_get_contents("http://freegeoip.net/csv/".$_SERVER['REMOTE_ADDR'])."<br /><b>Email:</b> ".$_POST['email']."<br /><b>Name:</b> ".$_POST['fullname']."<br /><br />Have a great day!<br />Jack's Listserv Email Script";
 	$headers = "From: DoNotReply@fa.oregonstate.edu\r\n";
 	$headers .= "Content-type: text/html; charset=\"UTF-8\"; format=flowed \r\n";
 	$headers .= "Mime-Version: 1.0 \r\n";
