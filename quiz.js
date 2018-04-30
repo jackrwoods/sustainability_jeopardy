@@ -202,18 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     xLink.onclick = close;
-    answer2Link.onclick = function() {
-      m.className += ' showAnswer';
-      return false;
-    };
-    answer3Link.onclick = function() {
-      m.className += ' showAnswer';
-      return false;
-    };
-    answer4Link.onclick = function() {
-      m.className += ' showAnswer';
-      return false;
-    };
 
     (function() {
       makeTeamClickHandler = function(team) {
@@ -223,8 +211,10 @@ document.addEventListener('DOMContentLoaded', function() {
             nukeChildren(scores[team][1]);
             addText(scores[team][1], '' + scores[team][0]);
             td.className = 'correct';
+            m.getElementsByClassName("a")[0].children[0].innerHTML = "<h1 style='color:#74D174'>Correct!</h1><br /> " + m.getElementsByClassName("a")[0].children[0].innerHTML;
           }
           m.className += ' showAnswer';
+          console.log(m)
           td.onclick = null;
           if (team !== 0) close();
           return false;
@@ -286,16 +276,19 @@ document.addEventListener('DOMContentLoaded', function() {
           xLink.onclick = close;
           answer2Link.onclick = function() {
             m.className += ' showAnswer';
+            m.getElementsByClassName("a")[0].children[0].innerHTML = "<h1 style='color:#E07070'>Incorrect!</h1><br /> " + m.getElementsByClassName("a")[0].children[0].innerHTML;
             td.className = 'incorrect';
             return false;
           };
           answer3Link.onclick = function() {
             m.className += ' showAnswer';
+            m.getElementsByClassName("a")[0].children[0].innerHTML = "<h1 style='color:#E07070'>Incorrect!</h1><br /> " + m.getElementsByClassName("a")[0].children[0].innerHTML;
             td.className = 'incorrect';
             return false;
           };
           answer4Link.onclick = function() {
             m.className += ' showAnswer';
+            m.getElementsByClassName("a")[0].children[0].innerHTML = "<h1 style='color:#E07070'>Incorrect!</h1><br /> " + m.getElementsByClassName("a")[0].children[0].innerHTML;
             td.className = 'incorrect';
             return false;
           };

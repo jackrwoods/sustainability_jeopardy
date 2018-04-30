@@ -281,7 +281,7 @@ p {
 }
 
 #m .a { visibility: hidden; height: 0px; }
-#m.showAnswer .a { visibility: visible; height: 4em; }
+#m.showAnswer .a { visibility: visible; height: 7em; }
 #m.showAnswer ul { display: none; }
 #m.showAnswer ul + ul { display: block; }
 #m.showAnswer #x { visibility: hidden; }
