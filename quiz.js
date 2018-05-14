@@ -69,6 +69,54 @@ while (0 !== currentIndex) {
 return array;
 }
 
+function downloadQuestions(answers) {
+  $.ajax({
+    method: "GET",
+    url: "https://sheets.googleapis.com/v4/spreadsheets/1M4UFNRymQbhFIgKE22nZ2SlTaYaRZKVmAJL9fhGc_7M/values/Jeopardy/?key=AIzaSyBXlDI1xiUQ4TxPC-VMauec6v-KVb0xkY4",
+    datatype: "JSON",
+    async: false
+
+  }).done(function(obj){
+    // for (var i = 0; i < 3; i++) {
+    //   categories.push(obj.values[0][i+1]);
+    //   questions.push([]);
+    //   for (var x = 0; x < 5; x++) {
+    //     var s = obj.values[x+1][i+1];
+    //     questions[i].push([s.split(";")]);
+    //   }
+    // }
+    var r = 0;
+    var i = 1;
+    console.log(obj);
+    for (x in $("#questions").children()) {
+      child = $("#questions").children()[x];
+      if (child.nodeType !== 1)
+          continue;
+      if (child.nodeName.toLowerCase() === "h2") {
+        //Categories
+        i = 1;
+        r++;
+        child.innerHTML = obj.values[0][r];
+      }
+      if (child.nodeName.toLowerCase() === "p") {
+        if (i % 2 == 0) {
+          //Answers
+          child.innerText = obj.values[Math.floor(i/2)][r].split(";")[1];
+          i++;
+        }
+        else {
+          //Questions
+          child.innerText = obj.values[Math.ceil(i/2)][r].split(";").shift().toString();
+          answers[Math.ceil(i/2)].push(obj.values[Math.ceil(i/2)][r].split(";").slice(2,6));
+          i++;
+        }
+      }
+    }
+  }).fail(function(err) {
+    console.log("failed to populate "  + err);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   /* Must be two. */
   var teams = ['Current Score: '];
@@ -84,6 +132,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var D = document;
 
   /* Get categories and questions from DOM. */
+  var answers = [[],[],[],[],[],[]];
+  downloadQuestions(answers);
+  console.log(answers);
+
   var categories = (function() {
     var ret = [], questions = null, question = null;
     var el = D.getElementById('questions').firstChild;
@@ -127,6 +179,8 @@ document.addEventListener('DOMContentLoaded', function() {
     return ret;
   })();
 
+  
+  console.log(questions);
   /* Scores will be saved here. */
   var scores = [];
 
