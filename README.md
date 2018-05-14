@@ -1,5 +1,5 @@
 # sustainability_jeopardy
-A Jeopardy game I made for the Sustainability Office. Not all code is original.
+A Jeopardy game made for the Sustainability Office. This was originally adapted from a quiz script written by Michal Nazarewicz. His original readme is below:
 
 # README.md from original Jeopardy Repo:
 
