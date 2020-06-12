@@ -72,7 +72,7 @@ return array;
 function downloadQuestions(answers) {
   $.ajax({
     method: "GET",
-    url: "https://sheets.googleapis.com/v4/spreadsheets/1M4UFNRymQbhFIgKE22nZ2SlTaYaRZKVmAJL9fhGc_7M/values/Jeopardy/?key=AIzaSyBXlDI1xiUQ4TxPC-VMauec6v-KVb0xkY4",
+    url: "./questions.csv",
     datatype: "JSON",
     async: false
 
