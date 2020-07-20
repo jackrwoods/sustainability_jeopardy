@@ -113,18 +113,27 @@ const store = {
           ], 500)
         ]
       }
-    ]
+    ],
+    points: 0 // An integer representing the number of points the player has
   },
   getters: {
+    categories: (state) => state.categories.map(category => category.name),
+    points: (state) => state.points,
+    questions: (state, categoryName) => state.categories.filter(category => category.name === categoryName)
   },
 
   actions: {
+    // No actions
   },
 
   mutations: {
+    addPoints (state, value) {
+      state.points += value
+    }
   },
 
   modules: {
+    // No modules
   }
 }
 
