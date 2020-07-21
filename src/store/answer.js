@@ -3,13 +3,4 @@ export default class Answer {
     this.answerText = answerText
     this.isCorrect = isCorrect
   }
-
-  // Getters for retrieving class member variables
-  get text () {
-    return this.answerText
-  }
-
-  get isCorrect () {
-    return this.isCorrect
-  }
 }

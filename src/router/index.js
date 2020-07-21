@@ -8,7 +8,7 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import notfound from '@/components/extras/404.vue'
+import jeopardy from '@/components/Jeopardy_Board.vue'
 
 Vue.use(Router)
 
@@ -16,7 +16,7 @@ export default new Router({
   routes: [
     {
       path: '*',
-      component: notfound
+      component: jeopardy
     }
   ]
 })

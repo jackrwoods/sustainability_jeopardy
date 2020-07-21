@@ -10,21 +10,8 @@ export default class Question {
     // Ensure only one answer is correct.
     let correct = 0
     this.answers.forEach(answer => {
-      if (answer.isCorrect() === true) correct++
+      if (answer.isCorrect === true) correct++
     })
     if (correct !== 1) throw new Error("Question constructor called with invalid parameters. One, and only one, question must be 'correct'.")
-  }
-
-  // Getters for retrieving class member variables
-  get question () {
-    return this.questionText
-  }
-
-  get answers () {
-    return this.answers
-  }
-
-  get pointValue () {
-    return this.answers
   }
 }

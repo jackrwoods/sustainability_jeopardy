@@ -7,9 +7,9 @@
 -->
 
 <template>
-  <el-container class="app">
-    <el-header class='header'>
-      <navigbar />
+  <el-container id="app" class="app">
+    <el-header>
+      <h1>Jeopardy</h1>
     </el-header>
     <el-main class='main' ref='main'>
         <router-view />
@@ -18,25 +18,9 @@
 </template>
 
 <script>
-import navigbar from '@/components/navBar'
-
 export default {
-  name: 'App',
-  components: {
-    navigbar
-  },
-  async created () {
-  },
-  data () {
-  },
-  beforeDestroy () {
-  },
-  methods: {
-  },
-  watch: {
-  }
+  name: 'App'
 }
-
 </script>
 
 <style>

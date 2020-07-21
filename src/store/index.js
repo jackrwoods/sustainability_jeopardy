@@ -119,7 +119,7 @@ const store = {
   getters: {
     categories: (state) => state.categories.map(category => category.name),
     points: (state) => state.points,
-    questions: (state, categoryName) => state.categories.filter(category => category.name === categoryName)
+    questions: (state) => (categoryName) => state.categories.filter(category => category.name === categoryName)
   },
 
   actions: {
