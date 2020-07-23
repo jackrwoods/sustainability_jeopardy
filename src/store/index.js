@@ -12,7 +12,7 @@ const store = {
         name: 'Sustainability at OSU',
         questions: [ // An array of question objects. Refer to question.js
           new Question('What is the OSU Sustainability Office\'s main focus?', [
-            new Answer('Each of These', true),
+            new Answer('All of These', true),
             new Answer('Reducing Carbon Emissions', false),
             new Answer('Green Buildings', false),
             new Answer('Tracking Utility Consumption', false)
@@ -93,7 +93,7 @@ const store = {
             new Answer('3000 to 4000', false),
             new Answer('4000 to 5000', false)
           ], 200),
-          new Question('What percent of food waste and yard trimmings fill U.S. landfills?', [
+          new Question('What percentage of U.S. landfills are made up of food waste and yard trimmings?', [
             new Answer('25%', true),
             new Answer('80%', false),
             new Answer('50%', false),
@@ -114,9 +114,11 @@ const store = {
         ]
       }
     ],
-    points: 0 // An integer representing the number of points the player has
+    points: 0, // An integer representing the number of points the player has,
+    questionsAnswered: 0 // Number of questions the user has answered
   },
   getters: {
+    answeredAll: (state) => state.questionsAnswered === 15,
     categories: (state) => state.categories.map(category => category.name),
     points: (state) => state.points,
     questions: (state) => (categoryName) => state.categories.filter(category => category.name === categoryName)
@@ -129,6 +131,9 @@ const store = {
   mutations: {
     addPoints (state, value) {
       state.points += value
+    },
+    answered (state) {
+      state.questionsAnswered++
     }
   },
 

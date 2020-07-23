@@ -49,6 +49,7 @@ export default {
       } else {
         this.$message.error('Incorrect! The correct answer was: "' + this.questionData.answers.filter(answer => answer.isCorrect)[0].answerText + '"', 3000)
       }
+      this.$store.commit('answered')
       this.dialogVisible = false
     }
   },

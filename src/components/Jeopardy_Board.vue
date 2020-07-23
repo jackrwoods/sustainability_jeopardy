@@ -9,22 +9,49 @@
     <el-row :style="{textAlign: 'center', margin: '.5em', fontSize: '1.5em'}">
       Your Score: {{points}}
     </el-row>
+    <el-dialog
+      title="Thanks for Playing!"
+      :visible.sync="answeredAll"
+      width="50%"
+      center>
+      <div style="word-break: normal; text-align: center;">
+        You scored: {{ points }}!
+      </div>
+      <span slot="footer" class="dialog-footer">
+        Share your score on: <br />
+        <twitter-button
+        v-bind:hasIcon="false"
+        class="share-button--outline"
+        url="https://beav.es/o4o"
+        :description="'@OSUsustainable I just scored ' + points + ' points on OSU\'s Sustainability Jeopardy!'"></twitter-button> &nbsp;
+        <facebook-button
+        class="share-button--outline"
+        url="https://beav.es/o4o"
+        :description="'@OSUsustainable I just scored ' + points + ' points on OSU\'s Sustainability Jeopardy!'"></facebook-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import TwitterButton from 'vue-share-buttons/src/components/TwitterButton'
+import FacebookButton from 'vue-share-buttons/src/components/FacebookButton'
+
 import question from './Question.vue'
 export default {
   name: 'Jeopardy',
   computed: {
     ...mapGetters([
+      'answeredAll',
       'categories',
       'points'
     ])
   },
   components: {
-    question
+    question,
+    TwitterButton,
+    FacebookButton
   }
 }
 </script>
