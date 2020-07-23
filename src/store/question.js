@@ -4,7 +4,7 @@ export default class Question {
   //      answers - An array of answer objects. One, and only one, must be "correct."
   constructor (text, answers, pointValue) {
     this.questionText = text
-    this.answers = answers
+    this.answers = answers.sort(() => Math.random() - 0.5)
     this.pointValue = pointValue
 
     // Ensure only one answer is correct.

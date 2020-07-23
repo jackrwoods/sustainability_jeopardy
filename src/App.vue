@@ -8,8 +8,8 @@
 
 <template>
   <el-container id="app" class="app">
-    <el-header>
-      <h1>Jeopardy</h1>
+    <el-header :style="{fontFamily: 'StratumNo2', textAlign: 'center', fontSize: '3em'}">
+      Sustainability Jeopardy
     </el-header>
     <el-main class='main' ref='main'>
         <router-view />
