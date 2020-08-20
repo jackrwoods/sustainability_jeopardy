@@ -10,12 +10,12 @@
       Your Score: {{points}}
     </el-row>
     <el-dialog
-      title="Thanks for Playing!"
+      :title="'You scored: ' + points + '!'"
       :visible.sync="answeredAll"
       width="50%"
       center>
       <div style="word-break: normal; text-align: center;">
-        You scored: {{ points }}!
+        <el-button type="primary" @click="$router.go()">Play Again</el-button>
       </div>
       <span slot="footer" class="dialog-footer">
         Share your score on: <br />

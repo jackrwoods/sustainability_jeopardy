@@ -1,7 +1,7 @@
 <template>
 <div>
-  <el-card :class="{ active: !answered, answered: answered, 'box-card': true }" shadow="hover" @click.native="dialogVisible = !answered">
-    <h1 :style="{ lineHeight: '8vh' }">{{ points }}</h1>
+  <el-card :class="{ active: true, answered: answered, correct: wasCorrect, wrong: !wasCorrect, 'box-card': true }" shadow="hover" @click.native="dialogVisible = !dialogVisible">
+    <h1 :style="{ lineHeight: '8vh', color: '#fff' }">{{ points }}</h1>
   </el-card>
   <!-- Hidden question dialog -->
   <el-dialog
@@ -10,10 +10,11 @@
     width="50%"
     center>
     <div style="word-break: normal; text-align: center;">
-      {{ questionData.questionText }}
+      {{ questionData.questionText }}<br />
+      <span style="color: #4A773C; font-weight: bold;">{{ answered === true ? questionData.answers.filter(ans => ans.isCorrect)[0].answerText : '' }}</span>
     </div>
     <span slot="footer" class="dialog-footer">
-      <el-radio-group @change="handleAnswer" v-model="selectedAnswer" size="mini">
+      <el-radio-group @change="handleAnswer" :disabled="answered" v-model="selectedAnswer" size="mini">
         <el-radio border v-for="(answer, index) in questionData.answers" :key="index" :label="index" @click="handleAnswer">{{ answer.answerText }}</el-radio>
       </el-radio-group>
     </span>
@@ -33,7 +34,8 @@ export default {
     return {
       answered: false,
       dialogVisible: false,
-      selectedAnswer: null
+      selectedAnswer: null,
+      wasCorrect: false
     }
   },
   methods: {
@@ -46,11 +48,11 @@ export default {
           type: 'success',
           duration: 3000
         })
+        this.wasCorrect = true
       } else {
         this.$message.error('Incorrect! The correct answer was: "' + this.questionData.answers.filter(answer => answer.isCorrect)[0].answerText + '"', 3000)
       }
       this.$store.commit('answered')
-      this.dialogVisible = false
     }
   },
   props: {
@@ -65,6 +67,7 @@ export default {
 
 .box-card {
   text-align: center;
+  background-color: $--color-primary;
   height: 13vh;
   margin: .5em;
   -webkit-touch-callout: none; /* iOS Safari */
@@ -79,9 +82,13 @@ export default {
   cursor: pointer;
 }
 .active:hover {
-  border-color: $--color-primary;
+  border-color: $--color-black;
+  background-color: $--color-spot;
 }
-.answered {
-  background-color: rgb(211,211,211);
+.answered.wrong {
+  background-color: $--color-wrong;
+}
+.answered.correct{
+  background-color: $--color-correct;
 }
 </style>
