@@ -1,14 +1,15 @@
 <template>
   <div>
-    <el-row v-for="pointValue in [100, 200, 300, 400, 500]" :key="pointValue">
-      <el-col :span="8" v-for="category in categories" :key="category">
-        <center><h1 v-if="pointValue === 100">{{ category }}</h1></center>
+    <el-row class="score-box">
+      Your Score: {{points}}
+    </el-row>
+    <el-row v-for="pointValue in [100, 200, 300, 400, 500]" :key="pointValue"> 
+      <el-col class="categories" :span="8" v-for="category in categories" :key="category">
+        <center><h1 class="category-labels" v-if="pointValue === 100">{{ category }}</h1></center>
         <question v-bind:category="category" v-bind:points="pointValue" />
       </el-col>
     </el-row>
-    <el-row :style="{textAlign: 'center', margin: '.5em', fontSize: '1.5em'}">
-      Your Score: {{points}}
-    </el-row>
+    
     <el-dialog
       :title="'You scored: ' + points + '!'"
       :visible.sync="answeredAll"
@@ -57,5 +58,20 @@ export default {
 </script>
 
 <style scoped>
+
+  .category-labels {
+    font-weight: bold;
+    color: black;
+  }
+
+  .points {
+    font-size: 20px;
+  }
+
+  .score-box {
+    text-align: center; 
+    font-size: 1.5em;
+    padding-bottom: 10px;
+  }
 
 </style>

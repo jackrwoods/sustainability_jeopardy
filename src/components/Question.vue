@@ -1,7 +1,7 @@
 <template>
 <div>
   <el-card :class="{ active: true, answered: answered, correct: wasCorrect, wrong: !wasCorrect, 'box-card': true }" shadow="hover" @click.native="dialogVisible = !dialogVisible">
-    <h1 :style="{ lineHeight: '8vh', color: '#fff' }">{{ points }}</h1>
+    <h1 class="points-label" >{{ points }}</h1>
   </el-card>
   <!-- Hidden question dialog -->
   <el-dialog
@@ -9,9 +9,9 @@
     :visible.sync="dialogVisible"
     width="50%"
     center>
-    <div style="word-break: normal; text-align: center;">
+    <div class="question">
       {{ questionData.questionText }}<br />
-      <span style="color: #4A773C; font-weight: bold;">{{ answered === true ? questionData.answers.filter(ans => ans.isCorrect)[0].answerText : '' }}</span>
+      <span class="correct-answer">{{ answered === true ? questionData.answers.filter(ans => ans.isCorrect)[0].answerText : '' }}</span>
     </div>
     <span slot="footer" class="dialog-footer">
       <el-radio-group @change="handleAnswer" :disabled="answered" v-model="selectedAnswer" size="mini">
@@ -80,15 +80,36 @@ export default {
 }
 .active {
   cursor: pointer;
+  border-color: black;
+  border-width: 2px;
 }
+
 .active:hover {
-  border-color: $--color-black;
   background-color: $--color-spot;
 }
+
 .answered.wrong {
   background-color: $--color-wrong;
 }
+
 .answered.correct{
   background-color: $--color-correct;
 }
+
+.points-label {
+  font-size: 28px;
+  line-height: 8vh;
+  color: #fff;
+}
+
+.question {
+  word-break: normal; 
+  text-align: center;
+}
+
+.correct-answer {
+  color: #4A773C; 
+  font-weight: bold;
+}
+
 </style>
